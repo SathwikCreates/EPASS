@@ -1,0 +1,76 @@
+<!-- /views/index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave Request System</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Sign-Up Form -->
+    <div id="signup-form">
+      <h2>Sign Up</h2>
+      <form id="signup">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" placeholder="Enter your full name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        
+        <label for="role">Role:</label>
+        <select id="role" required>
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+        </select>
+        
+        <button type="submit">Sign Up</button>
+      </form>
+      <p>Already have an account? <span onclick="showLoginForm()">Login here</span></p>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-form" style="display: none;">
+      <h2>Login</h2>
+      <form id="login">
+        <label for="email-login">Email:</label>
+        <input type="email" id="email-login" placeholder="Enter your email" required>
+        
+        <label for="password-login">Password:</label>
+        <input type="password" id="password-login" placeholder="Enter your password" required>
+        
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <span onclick="showSignUpForm()">Sign up here</span></p>
+    </div>
+
+    <!-- Teacher Dashboard -->
+    <div id="teacher-dashboard" style="display: none;">
+      <h2>Teacher Dashboard</h2>
+      <div class="leave-requests">
+        <p>Pending Leave Requests:</p>
+        <!-- Leave Requests should be dynamically inserted here -->
+      </div>
+    </div>
+
+    <!-- Student Dashboard -->
+    <div id="student-dashboard" style="display: none;">
+      <h2>Student Dashboard</h2>
+      <form id="leave-request-form">
+        <label for="reason">Reason for Leave:</label>
+        <input type="text" id="reason" placeholder="Enter reason" required>
+        <label for="date">Leave Date:</label>
+        <input type="date" id="date" required>
+        <button type="submit">Submit Request</button>
+      </form>
+    </div>
+  </div>
+  
+  <script src="/js/script.js"></script>
+</body>
+</html>
