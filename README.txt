@@ -1,7 +1,7 @@
 1. Clone the Repository
 bash
 Copy code
-git clone https://github.com/yourusername/leave-request-system.git
+git clone https://github.com/SathwikCreates/EPASS/edit/main/README.txt
 cd leave-request-system
 2. Install Dependencies
 Run the following command to install the required Node.js modules:
