@@ -1,0 +1,81 @@
+// /public/js/script.js
+
+function showSignUpForm() {
+  document.getElementById('signup-form').style.display = 'block';
+  document.getElementById('login-form').style.display = 'none';
+  document.getElementById('teacher-dashboard').style.display = 'none';
+  document.getElementById('student-dashboard').style.display = 'none';
+}
+
+function showLoginForm() {
+  document.getElementById('signup-form').style.display = 'none';
+  document.getElementById('login-form').style.display = 'block';
+}
+
+// Handle sign-up
+document.getElementById('signup').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const role = document.getElementById('role').value;
+
+  const response = await fetch('/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, password, role })
+  });
+
+  const data = await response.json();
+  if (response.ok) {
+    alert('Signed up successfully');
+    showLoginForm();
+  } else {
+    alert(data.message);
+  }
+});
+
+// Handle login
+document.getElementById('login').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const email = document.getElementById('email-login').value;
+  const password = document.getElementById('password-login').value;
+
+  const response = await fetch('/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await response.json();
+  if (response.ok) {
+    alert('Login successful');
+    if (data.user.role === 'teacher') {
+      document.getElementById('teacher-dashboard').style.display = 'block';
+    } else if (data.user.role === 'student') {
+      document.getElementById('student-dashboard').style.display = 'block';
+    }
+  } else {
+    alert(data.message);
+  }
+});
+
+// Handle leave request
+document.getElementById('leave-request-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const reason = document.getElementById('reason').value;
+  const date = document.getElementById('date').value;
+
+  const response = await fetch('/leave-request', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ userId: 1, reason, date }) // Hardcoded userId for now
+  });
+
+  const data = await response.json();
+  if (response.ok) {
+    alert('Leave request submitted');
+  } else {
+    alert(data.message);
+  }
+});
